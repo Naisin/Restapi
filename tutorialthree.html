@@ -1,0 +1,93 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>ArcGIS Maps SDK for JavaScript Tutorials: Add a point, line, and polygon</title>
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.28/"></script>
+  <script>
+
+  require([
+    "esri/config",
+    "esri/Map",
+    "esri/views/MapView",
+
+    "esri/Graphic",
+    "esri/layers/GraphicsLayer"
+
+    ], function(esriConfig,Map, MapView, Graphic, GraphicsLayer) {
+
+  esriConfig.apiKey = "AAPK5f27c0835fd948088e6b7afd302f49abBipUoehURImUblZNbqkrDUbES8zO4QW9qytIfhp7nhLUuVK0jv2-Pn4WKRNKRXdc";
+
+  const map = new Map({
+    basemap: "arcgis/topographic" // basemap styles service
+  });
+
+  const view = new MapView({
+    map: map,
+    center: [28.7041, 77.1025], //Longitude, latitude
+    zoom: 3,
+    container: "viewDiv"
+ });
+
+ const graphicsLayer = new GraphicsLayer();
+ map.add(graphicsLayer);
+
+ const point = { //Create a point
+    type: "point",
+    longitude: 77.1025,
+    latitude: 28.7041
+ };
+ const simpleMarkerSymbol = {
+    type: "simple-marker",
+    color: [255,255,0],  // Yellow
+    outline: {
+        color: [0,0,0], // White
+        width: 3
+    }
+ };
+
+ const pointGraphic = new Graphic({
+    geometry: point,
+    symbol: simpleMarkerSymbol
+ });
+ graphicsLayer.add(pointGraphic);
+
+ // Create a line geometry
+ const polyline = {
+    type: "polyline",
+    paths: [
+        [77.1025, 28.7041], //Longitude, latitude
+        [88.3639, 22.5726], //Longitude, latitude
+        [80.2707, 13.0827], //Longitude, latitude
+        [72.8777, 19.0760], //Longitude, latitude
+        [77.1025, 28.7041], //Longitude, latitude
+    ]
+ };
+ const simpleLineSymbol = {
+    type: "simple-line",
+    color: [0,73,83], // Orange
+    width: 2
+ };
+
+ const polylineGraphic = new Graphic({
+    geometry: polyline,
+    symbol: simpleLineSymbol
+ });
+ graphicsLayer.add(polylineGraphic);
+
+ });
+</script>
+</head>
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>
