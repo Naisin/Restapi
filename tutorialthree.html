@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>ArcGIS Maps SDK for JavaScript Tutorials: Add a point, line, and polygon</title>
+  <title>Golden Quadrilateral of India</title> //Depicted by a highlighted point marker and a polyline
   <style>
     html, body, #viewDiv {
       padding: 0;
@@ -33,8 +33,8 @@
 
   const view = new MapView({
     map: map,
-    center: [28.7041, 77.1025], //Longitude, latitude
-    zoom: 3,
+    center: [77.1025, 28.7041], //Longitude, latitude
+    zoom: 5,
     container: "viewDiv"
  });
 
@@ -74,7 +74,7 @@
  };
  const simpleLineSymbol = {
     type: "simple-line",
-    color: [0,73,83], // Orange
+    color: [0,73,83], // Dark Green
     width: 2
  };
 
