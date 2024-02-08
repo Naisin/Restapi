@@ -1,0 +1,80 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Famous Birth Places of Classic Romance Novelists</title> 
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.28/"></script>
+  <script>
+
+  require([
+    "esri/config",
+    "esri/Map",
+    "esri/views/MapView",
+
+    "esri/Graphic",
+    "esri/layers/GraphicsLayer"
+
+    ], function(esriConfig,Map, MapView, Graphic, GraphicsLayer) {
+
+  esriConfig.apiKey = "AAPK5f27c0835fd948088e6b7afd302f49abBipUoehURImUblZNbqkrDUbES8zO4QW9qytIfhp7nhLUuVK0jv2-Pn4WKRNKRXdc";
+
+  const map = new Map({
+    basemap: "arcgis/topographic" // basemap styles service
+  });
+
+  const view = new MapView({
+    map: map,
+    center: [35.6667, 39.1667], //Longitude, latitude
+    zoom: 2,
+    container: "viewDiv"
+ });
+
+ const graphicsLayer = new GraphicsLayer();
+ map.add(graphicsLayer);
+
+
+ // Create a line geometry
+ const polyline = {
+    type: "polyline",
+    paths: [
+        [-93.091301, 44.954445], //Longitude, latitude Saint Paul
+        [-84.388168, 33.748783], //Longitude, latitude Atlanta, Georgia
+        [18.423300,  -33.918861], //Longitude, latitude CapeTown
+        [42.7539, 44.0225], //Longitude, latitude Yasnaya Polyana
+        [37.618423, 55.751244], //Longitude, latitude Moscow
+        [10.757933, 59.911491], //Longitude, latitude Norway
+        [-9.598107, 30.427755], // Longitude, latitude Agadir, Morroco
+        [ -66.9167,  52.9500], //Longitude, latitude Labrador City
+        [-93.091301, 44.954445], //Longitude, latitude  Saint Paul
+        
+
+    ]
+ };
+ const simpleLineSymbol = {
+    type: "simple-line",
+    color: [255, 0, 0], // Dark Green
+    width: 2
+ };
+
+ const polylineGraphic = new Graphic({
+    geometry: polyline,
+    symbol: simpleLineSymbol
+ });
+ graphicsLayer.add(polylineGraphic);
+
+ });
+</script>
+</head>
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>
